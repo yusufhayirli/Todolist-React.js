@@ -21,29 +21,29 @@ const List = () => {
     setList(holder);
   }
 
+  const labelOnClickHandler = (item, index) => {
+    const listHolder = [...list];
+    listHolder[index].isDone = !item.isDone;
+    setList(listHolder);
+  }
+
   return (
     <div className="list-fetch">
      {console.log(list)}
-    <div>
       {
-      list.map(item => {
-        if (item.isDone==true){
-          return(
-            <label style={{textDecoration:"line-through"}}>
-              {item.task}
-            </label>
-          )
-        }
-        else{
-          return(
-            <label>
-              {item.task}
-            </label>
-            )
-        }
+      list.map((item, index) => {
+        return(
+        <label 
+          style={item.isDone ? {textDecoration:"line-through"} : {}}
+          onClick={() => labelOnClickHandler(item, index)}
+        >
+          {item.task}
+          <br/>
+        </label>
+        )
+        
       })
     }
-    </div>
     <br/>
     <button onClick={clearCompletedHandler}>Clear Completed</button>
     <Form 
