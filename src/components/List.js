@@ -1,41 +1,55 @@
 import react, { useState, useEffect } from "react";
+import Form from "./Form";
 
-const List = ({
-  newTask
-}) => {
+const List = () => {
 
-  const [list, setList] = useState([
-    "a","b","c"
-  ]);
+  const [list, setList] = useState(
+    [
+        {
+          task: 'read a book',
+          isDone: false
+        },
+        {
+          task: 'toss a coin',
+          isDone: true
+        },
+    ]
+  );
 
   const clearCompletedHandler = () => {
-    console.log("Clear Completed");
+    const holder = [...list].filter(item => item.isDone==false);
+    setList(holder);
   }
-
-  const newTaskHandler = () => {
-    if(newTask!=''){
-      setList(...list, newTask);
-    }
-  }
-
-  useEffect(() => {
-    newTaskHandler();
-  }, []);
 
   return (
     <div className="list-fetch">
-      List
-    {
-      Object.values(list).map(element => {
-        <label>
-          {
-          element
-          }
-        </label>
+     {console.log(list)}
+    <div>
+      {
+      list.map(item => {
+        if (item.isDone==true){
+          return(
+            <label style={{textDecoration:"line-through"}}>
+              {item.task}
+            </label>
+          )
+        }
+        else{
+          return(
+            <label>
+              {item.task}
+            </label>
+            )
+        }
       })
     }
+    </div>
     <br/>
     <button onClick={clearCompletedHandler}>Clear Completed</button>
+    <Form 
+      list={list}
+      setList={setList}
+    />
     </div>
   )
 }

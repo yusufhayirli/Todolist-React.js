@@ -1,22 +1,31 @@
 import react, { useState } from "react";
-import List from "./List";
 
-const Form = () => {
+const Form = ( { list, setList } ) => {
 
   const [newTask, setNewTask] = useState('');
 
-  const submitHandler = (valueOf) => {
-    setNewTask(valueOf);
+  // const submitHandler = () => {
+  //   setList(...list, newTask);
+  // }
+
+  const handleChange = (e) => {
+    setNewTask(e.target.value);
+  }
+
+  const submitHandler = () => {
+    setList([...list, {
+      task: newTask, 
+      isDone:false
+    }]);
   }
 
   return (
     <div>
-      <List
-      newTask={newTask}
-      />
-      <input type="text" name="NewTaskInput"/>
+      <form>
+      <input type="text" name="NewTask" value={newTask} placeholder="Enter a new task" onChange={handleChange}/>
       <br/>
-      <button onClick={submitHandler()}>Submit</button>
+      <button type="submit" onClick={submitHandler}>Submit</button>
+      </form>
     </div>
   )
 }
