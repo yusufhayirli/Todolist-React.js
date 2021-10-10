@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import react, { useState } from "react";
 import Form from "./Form";
 
 const List = () => {
@@ -17,7 +17,7 @@ const List = () => {
   );
 
   const clearCompletedHandler = () => {
-    const holder = [...list].filter(item => item.isDone==false);
+    const holder = [...list].filter(item => item.isDone===false);
     setList(holder);
   }
 
@@ -28,28 +28,32 @@ const List = () => {
   }
 
   return (
-    <div className="list-fetch">
-     {console.log(list)}
-      {
-      list.map((item, index) => {
-        return(
-        <label 
-          style={item.isDone ? {textDecoration:"line-through"} : {}}
-          onClick={() => labelOnClickHandler(item, index)}
-        >
-          {item.task}
-          <br/>
-        </label>
-        )
-        
-      })
-    }
-    <br/>
-    <button onClick={clearCompletedHandler}>Clear Completed</button>
-    <Form 
-      list={list}
-      setList={setList}
-    />
+    <div className="container"
+    style={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
+      <div className="list-fetch">
+        {
+        list.map((item, index) => {
+          return(
+          <label 
+            style={item.isDone ? {textDecoration:"line-through"} : {}}
+            onClick={() => labelOnClickHandler(item, index)}
+          >
+            {index+1}
+            {" - "}
+            {item.task}
+            <br/>
+          </label>
+          )
+        })
+      }
+      <button class="button" onClick={clearCompletedHandler}>Clear Completed</button>
+      </div>
+      <div>
+      <Form 
+        list={list}
+        setList={setList}
+      />
+      </div>
     </div>
   )
 }
