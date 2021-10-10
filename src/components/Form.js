@@ -13,12 +13,14 @@ const Form = ({
 
   //both works
   const submitHandler = () => {
-    if(newTask!="") {
-      const listHolder = [...list];
-      listHolder.push({task: newTask, isDone: false});
-      return setList(listHolder);
+    if(newTask==="") {
+      alert("Enter a task!");
     }
-    alert("enter a task");
+    const listHolder = [...list];
+    listHolder.push({task: newTask, isDone: false});
+    setList(listHolder);
+    setNewTask("");
+    
     // setList([...list, {
     //   task: newTask, 
     //   isDone:false
@@ -35,7 +37,7 @@ const Form = ({
         placeholder="Enter a new task" 
         onChange={(e) => handleChange(e)}
       />
-      <button class="button" type="submit" onClick={submitHandler}>Submit</button>
+      <button class="button" type="button" onClick={submitHandler}>Submit</button>
       </form>
     </div>
   )
