@@ -1,11 +1,11 @@
 import react, { useState } from "react";
 
 const Form = ({ 
-  list, 
-  setList 
+  newTask, 
+  setNewTask,
+  list,
+  setList
 }) => {
-
-  const [newTask, setNewTask] = useState('');
 
   const handleChange = (e) => {
     setNewTask(e.target.value);

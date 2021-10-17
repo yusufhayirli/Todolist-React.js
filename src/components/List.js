@@ -1,20 +1,9 @@
 import react, { useState } from "react";
-import Form from "./Form";
 
-const List = () => {
-
-  const [list, setList] = useState(
-    [
-        {
-          task: 'read a book',
-          isDone: false
-        },
-        {
-          task: 'toss a coin',
-          isDone: true
-        },
-    ]
-  );
+const List = ({
+  list,
+  setList
+}) => {
 
   const clearCompletedHandler = () => {
     const holder = [...list].filter(item => item.isDone===false);
@@ -47,12 +36,6 @@ const List = () => {
         })
       }
       <button class="button" onClick={clearCompletedHandler}>Clear Completed</button>
-      </div>
-      <div>
-      <Form 
-        list={list}
-        setList={setList}
-      />
       </div>
     </div>
   )
