@@ -17,7 +17,7 @@ const List = ({
   }
 
   return (
-    <div className="container"
+    <div className="list-container"
     style={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
       <div className="list-fetch">
         {

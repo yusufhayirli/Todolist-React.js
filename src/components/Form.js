@@ -11,7 +11,7 @@ const Form = ({
     setNewTask(e.target.value);
   }
 
-  //both works
+  //both work
   const submitHandler = () => {
     if(newTask==="") {
       alert("Enter a task!");
@@ -28,7 +28,7 @@ const Form = ({
   }
 
   return (
-    <div>
+    <div className="form-container">
       <form>
       <input 
         type="text" 
